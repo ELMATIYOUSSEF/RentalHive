@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DatabaseMigrationSettings" lastSelectedDirectory="db/changelog/#date(&quot;yyyy&quot;)/#date(&quot;MM&quot;)">
+    <database-infos>
+      <database-info>
+        <option name="enabled" value="true" />
+        <dbms-id>mysql</dbms-id>
+      </database-info>
+    </database-infos>
+    <liquibase-changeset-templates>
+      <liquibase-changeset-templates objectQuotingStrategy="addForeignKeyConstraint" failOnError="true" runOnChange="true" createPrecondition="true" />
+      <liquibase-changeset-templates objectQuotingStrategy="addNotNullConstraint" failOnError="true" runOnChange="true" createPrecondition="true" />
+    </liquibase-changeset-templates>
+  </component>
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit name="Default" defaultIncludeChangeLogFile="src/main/resources/db/master.xml" defaultSearchScope="Project">
+        <packages>
+          <package value="com.rentalhive" />
+        </packages>
+      </persistence-unit>
+    </persistence-units>
+  </component>
+</project>
