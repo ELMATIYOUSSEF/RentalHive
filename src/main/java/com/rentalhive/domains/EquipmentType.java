@@ -21,6 +21,4 @@ public class EquipmentType {
     private Equipment equipment;
     @NotBlank
     private String Matricul ;
-    @OneToMany(mappedBy = "equipementType")
-    Set <EquipmentTypeReservation> equipmentTypeReservations;
 }

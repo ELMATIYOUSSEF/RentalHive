@@ -25,7 +25,7 @@ public class Equipment {
     private Integer quantite ;
     @NotBlank
     private Double cout_Location;
-    @OneToMany(mappedBy = "equipement",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "equipment",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<EquipmentType> equipmentTypes;
 
 }
