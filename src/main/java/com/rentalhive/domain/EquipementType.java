@@ -22,5 +22,5 @@ public class EquipementType {
     @NotBlank
     private String Matricul ;
     @OneToMany(mappedBy = "equipementType")
-    Set<EquipementTypeReservation> equipementTypeReservations;
+    Set <EquipementTypeReservation> equipementTypeReservations;
 }
