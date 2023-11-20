@@ -49,4 +49,9 @@ public class EquipmentServiceImpl implements EquipmentService {
         return equipmentRepository.save(updatedEquipment);
     }
 
+    @Override
+    public void deleteEquipement(Long id){
+        equipmentRepository.deleteById(id);
+    }
+
 }

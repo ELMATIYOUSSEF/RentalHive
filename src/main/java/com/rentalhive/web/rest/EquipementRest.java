@@ -38,6 +38,12 @@ public class EquipementRest {
         return new ResponseEntity<>(createdEquipment, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/equipment/{id}")
+    public ResponseEntity<Void> deleteEquipement(@PathVariable Long id){
+        equipmentService.deleteEquipement(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 
 

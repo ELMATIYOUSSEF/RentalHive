@@ -14,4 +14,6 @@ public interface EquipmentService {
 
     Optional<Equipment> findById(Long id);
     Equipment update(Equipment equipment);
+
+    void deleteEquipement(Long id);
 }
