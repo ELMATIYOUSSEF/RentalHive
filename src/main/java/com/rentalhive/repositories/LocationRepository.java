@@ -1,4 +1,4 @@
-package com.rentalhive.repository;
+package com.rentalhive.repositories;
 
 public class LocationRepository {
 }

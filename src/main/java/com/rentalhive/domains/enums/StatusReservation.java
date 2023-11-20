@@ -1,4 +1,4 @@
-package com.rentalhive.domain.enums;
+package com.rentalhive.domains.enums;
 
 public enum StatusReservation {
     pending, cancel , valid

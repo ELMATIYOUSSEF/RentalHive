@@ -1,7 +1,7 @@
 package com.rentalhive.web.rest;
 
-import com.rentalhive.domain.Equipement;
-import com.rentalhive.service.EquipementService;
+import com.rentalhive.domains.Equipment;
+import com.rentalhive.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,32 +10,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 public class EquipementRest {
-    private final EquipementService equipementService;
+    private final EquipmentService equipmentService;
 
     @Autowired
-    public EquipementRest(EquipementService equipementService) {
-        this.equipementService = equipementService;
+    public EquipementRest(EquipmentService equipmentService) {
+        this.equipmentService = equipmentService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Equipement>> getAllEquipements() {
-        List<Equipement> equipements = equipementService.getAllEquipements();
-        return new ResponseEntity<>(equipements, HttpStatus.OK);
+    public ResponseEntity<List<Equipment>> getAllEquipements() {
+        List<Equipment> equipment = equipmentService.getAllEquipements();
+        return new ResponseEntity<>(equipment, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Equipement> getEquipementById(@PathVariable Long id) {
-        Equipement equipement = equipementService.getEquipementById(id);
-        if (equipement != null) {
-            return new ResponseEntity<>(equipement, HttpStatus.OK);
+    public ResponseEntity<Equipment> getEquipementById(@PathVariable Long id) {
+        Equipment equipment = equipmentService.getEquipementById(id);
+        if (equipment != null) {
+            return new ResponseEntity<>(equipment, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Equipement> createEquipement(@RequestBody Equipement equipement) {
-        Equipement createdEquipement = equipementService.createEquipement(equipement);
-        return new ResponseEntity<>(createdEquipement, HttpStatus.CREATED);
+    public ResponseEntity<Equipment> createEquipement(@RequestBody Equipment equipment) {
+        Equipment createdEquipment = equipmentService.createEquipement(equipment);
+        return new ResponseEntity<>(createdEquipment, HttpStatus.CREATED);
     }
 
 

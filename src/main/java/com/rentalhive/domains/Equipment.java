@@ -1,8 +1,5 @@
-package com.rentalhive.domain;
+package com.rentalhive.domains;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +13,7 @@ import java.util.List;
 @Setter
 @Getter
 @Builder
-public class Equipement {
+public class Equipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +26,6 @@ public class Equipement {
     @NotBlank
     private Double cout_Location;
     @OneToMany(mappedBy = "equipement",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<EquipementType> equipementTypes;
+    private List<EquipmentType> equipmentTypes;
 
 }

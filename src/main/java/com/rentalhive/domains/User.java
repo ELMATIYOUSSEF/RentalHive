@@ -1,6 +1,6 @@
-package com.rentalhive.domain;
+package com.rentalhive.domains;
 
-import com.rentalhive.domain.enums.Role;
+import com.rentalhive.domains.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;

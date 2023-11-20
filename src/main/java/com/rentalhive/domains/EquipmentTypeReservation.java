@@ -1,4 +1,4 @@
-package com.rentalhive.domain;
+package com.rentalhive.domains;
 
 import lombok.*;
 
@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Builder
-public class EquipementTypeReservation {
+public class EquipmentTypeReservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private EquipementType equipementType;
+    private EquipmentType equipmentType;
     @ManyToOne
     private Reservation reservation;
     @NotBlank

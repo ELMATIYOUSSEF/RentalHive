@@ -1,6 +1,6 @@
-package com.rentalhive.domain;
+package com.rentalhive.domains;
 
-import com.rentalhive.domain.enums.StatusReservation;
+import com.rentalhive.domains.enums.StatusReservation;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Reservation {
     private Long id;
 
     @OneToMany(mappedBy = "reservation" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    Set<EquipementTypeReservation> equipementTypeReservations;
+    Set<EquipmentTypeReservation> equipmentTypeReservations;
 
     @ManyToOne
     private User user;

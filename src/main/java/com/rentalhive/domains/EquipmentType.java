@@ -1,4 +1,4 @@
-package com.rentalhive.domain;
+package com.rentalhive.domains;
 
 import lombok.*;
 
@@ -13,14 +13,14 @@ import java.util.Set;
 @Setter
 @Getter
 @Builder
-public class EquipementType {
+public class EquipmentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private  Equipement equipement;
+    private Equipment equipment;
     @NotBlank
     private String Matricul ;
     @OneToMany(mappedBy = "equipementType")
-    Set <EquipementTypeReservation> equipementTypeReservations;
+    Set <EquipmentTypeReservation> equipmentTypeReservations;
 }

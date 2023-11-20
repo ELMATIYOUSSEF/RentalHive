@@ -1,11 +1,10 @@
-package com.rentalhive.repository;
+package com.rentalhive.repositories;
 
-import com.rentalhive.domain.Equipement;
+import com.rentalhive.domains.Equipment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EquipementRepository extends JpaRepository<Equipement, Long> {
+public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     //public Equipement findById(Long id);
-
 }
