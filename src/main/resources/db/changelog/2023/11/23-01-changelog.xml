@@ -5,43 +5,37 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1700728259238-1" author="YouCode (generated)">
-        <createTable tableName="equipment_item">
+    <changeSet id="1700737005342-1" author="YouCode (generated)">
+        <createTable tableName="equipment">
             <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_equipmentitem"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_equipment"/>
             </column>
-            <column name="equipement_id" type="BIGINT"/>
-            <column name="matricul" type="VARCHAR(255)"/>
-            <column name="status_equipement_type" type="SMALLINT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="quantite" type="INT"/>
+            <column name="cout_location" type="DOUBLE"/>
         </createTable>
     </changeSet>
-    <changeSet id="1700728259238-2" author="YouCode (generated)">
-        <addColumn tableName="equipment_items_reservation">
-            <column name="equipment_item_id" type="BIGINT"/>
+    <changeSet id="1700737005342-2" author="YouCode (generated)">
+        <addColumn tableName="equipment_item">
+            <column name="equipment_id" type="BIGINT"/>
         </addColumn>
     </changeSet>
-    <changeSet id="1700728259238-3" author="YouCode (generated)">
-        <addForeignKeyConstraint baseColumnNames="equipment_item_id" baseTableName="equipment_items_reservation"
-                                 constraintName="FK_EQUIPMENTITEMSRESERVATION_ON_EQUIPMENTITEM"
-                                 referencedColumnNames="id" referencedTableName="equipment_item"/>
+    <changeSet id="1700737005342-3" author="YouCode (generated)">
+        <addUniqueConstraint columnNames="name" constraintName="uc_equipment_name" tableName="equipment"/>
     </changeSet>
-    <changeSet id="1700728259238-4" author="YouCode (generated)">
-        <addForeignKeyConstraint baseColumnNames="equipement_id" baseTableName="equipment_item"
-                                 constraintName="FK_EQUIPMENTITEM_ON_EQUIPEMENT" referencedColumnNames="id"
-                                 referencedTableName="equipement"/>
+    <changeSet id="1700737005342-4" author="YouCode (generated)">
+        <addForeignKeyConstraint baseColumnNames="equipment_id" baseTableName="equipment_item"
+                                 constraintName="FK_EQUIPMENTITEM_ON_EQUIPMENT" referencedColumnNames="id"
+                                 referencedTableName="equipment"/>
     </changeSet>
-    <changeSet id="1700728259238-5" author="YouCode (generated)">
-        <dropForeignKeyConstraint baseTableName="equipment_items_reservation"
-                                  constraintName="FK_EQUIPMENTITEMSRESERVATION_ON_EQUIPMENTITEMS"/>
+    <changeSet id="1700737005342-5" author="YouCode (generated)">
+        <dropForeignKeyConstraint baseTableName="equipment_item" constraintName="FK_EQUIPMENTITEM_ON_EQUIPEMENT"/>
     </changeSet>
-    <changeSet id="1700728259238-6" author="YouCode (generated)">
-        <dropForeignKeyConstraint baseTableName="equipment_items" constraintName="FK_EQUIPMENTITEMS_ON_EQUIPEMENT"/>
+    <changeSet id="1700737005342-7" author="YouCode (generated)">
+        <dropTable cascadeConstraints="true" tableName="equipement"/>
     </changeSet>
-    <changeSet id="1700728259238-7" author="YouCode (generated)">
-        <dropTable cascadeConstraints="true" tableName="equipment_items"/>
-    </changeSet>
-    <changeSet id="1700728259238-8" author="YouCode (generated)">
-        <dropColumn columnName="equipment_items_id" tableName="equipment_items_reservation"/>
+    <changeSet id="1700737005342-8" author="YouCode (generated)">
+        <dropColumn columnName="equipement_id" tableName="equipment_item"/>
     </changeSet>
 
 </databaseChangeLog>

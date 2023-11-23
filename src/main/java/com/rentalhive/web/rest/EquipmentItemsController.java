@@ -2,7 +2,7 @@ package com.rentalhive.web.rest;
 
 import com.rentalhive.DTO.EquipmentDto;
 import com.rentalhive.DTO.EquipmentItemsDto;
-import com.rentalhive.domain.Equipement;
+import com.rentalhive.domain.Equipment;
 import com.rentalhive.domain.EquipmentItem;
 import com.rentalhive.domain.enums.StatusEquipmentItems;
 import com.rentalhive.service.EquipementService;
@@ -21,14 +21,14 @@ public class EquipmentItemsController {
     @PostMapping("/save")
     public ResponseEntity<?> saveEquipementType(@RequestBody EquipmentItemsDto equipmentItemsDto)  {
         try {
-           Equipement equipement =  equipementService.searchByName(equipmentItemsDto.getEquipementname());
+           Equipment equipment =  equipementService.searchByName(equipmentItemsDto.getEquipementname());
             EquipmentItem equipmentItem = EquipmentItem.builder()
-                    .equipement(equipement)
+                    .equipment(equipment)
                     .Matricul(equipmentItemsDto.getMatricul())
                     .statusEquipementType(StatusEquipmentItems.inStock)
                     .build();
             EquipmentItem result = equipmentItemsService.save(equipmentItem);
-            equipementService.upDate(equipement);
+            equipementService.upDate(equipment);
             EquipmentDto equipementReturn = ResponseDate(result);
             return ResponseEntity.ok().body(equipementReturn);
         } catch (Exception e) {
@@ -52,13 +52,12 @@ public class EquipmentItemsController {
     }
 
     public EquipmentDto ResponseDate(EquipmentItem result){
-        EquipmentDto equipementReturn = EquipmentDto.builder()
-                .name(result.getEquipement().getName())
-                .quantite(result.getEquipement().getQuantite())
-                .cout_Location(result.getEquipement().getCout_Location())
+        return EquipmentDto.builder()
+                .name(result.getEquipment().getName())
+                .quantite(result.getEquipment().getQuantite())
+                .cout_Location(result.getEquipment().getCout_Location())
                 .Matricul(result.getMatricul())
                 .statusEquipementType(result.getStatusEquipementType())
                 .build();
-        return equipementReturn ;
     }
 }

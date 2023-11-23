@@ -73,7 +73,7 @@ public class ReservationController {
     public List<EquipmentItem> checkQuantity(Integer Qnt, String nameEquipment, LocalDateTime dateStart, LocalDateTime dateRouter) {
         List<EquipmentItem> equipmentTypesInStock = reservationService.findAvailableEquipementTypes(dateStart,dateRouter);
         List<EquipmentItem> equipmentItems = equipmentTypesInStock.stream()
-                .filter(equipementTypeReservation -> nameEquipment.equals(equipementTypeReservation.getEquipement().getName()))
+                .filter(equipementTypeReservation -> nameEquipment.equals(equipementTypeReservation.getEquipment().getName()))
                 .toList();
 
         if (equipmentItems.size() >= Qnt)

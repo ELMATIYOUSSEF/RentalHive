@@ -1,6 +1,6 @@
 package com.rentalhive.web.rest;
 
-import com.rentalhive.domain.Equipement;
+import com.rentalhive.domain.Equipment;
 import com.rentalhive.service.EquipementService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -25,11 +26,11 @@ public class EquipmentController {
     private final EquipementService equipementService;
     private Logger log = LoggerFactory.getLogger(EquipmentController.class);
     @PostMapping("/save")
-    public ResponseEntity<?> saveEquipement(@RequestBody Equipement equipement)  {
+    public ResponseEntity<?> saveEquipement(@RequestBody Equipment equipment)  {
         try {
-            Equipement equipement1 = equipementService.Save(equipement);
+            Equipment equipment1 = equipementService.Save(equipment);
             log.info("Equipment Saved Successfully");
-            return ResponseEntity.ok().body(equipement1);
+            return ResponseEntity.ok().body(equipment1);
         } catch (Exception e) {
             log.error("Registration failed");
           return ResponseEntity.internalServerError().body(e.getMessage());
@@ -38,7 +39,7 @@ public class EquipmentController {
     @GetMapping("/search")
     public ResponseEntity<?> searchByName(@RequestParam String name) {
         try {
-            Equipement result = equipementService.searchByName(name);
+            Equipment result = equipementService.searchByName(name);
             if (result != null) {
                 log.info("result of Search : " + result);
                 return ResponseEntity.ok(result);
@@ -52,8 +53,24 @@ public class EquipmentController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<List<Equipment>> getAllEquipements() {
+        List<Equipment> equipment = equipementService.getAllEquipements();
+        return new ResponseEntity<>(equipment, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Equipment> getEquipementById(@PathVariable Long id) {
+        Equipment equipment = equipementService.getEquipementById(id);
+        if (equipment != null) {
+            return new ResponseEntity<>(equipment, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+
     @PutMapping("/updateEquipment")
-    public ResponseEntity<Map<String, Object>> updateEquipment(@RequestBody @Valid Equipement equipment, BindingResult bindingResult) throws Exception {
+    public ResponseEntity<Map<String, Object>> updateEquipment(@RequestBody @Valid Equipment equipment, BindingResult bindingResult) throws Exception {
         Map<String, Object> response = new HashMap<>();
         if (bindingResult.hasErrors()) {
             response.put("status", "Error");
@@ -65,7 +82,7 @@ public class EquipmentController {
             response.put("errors", errors);
             return ResponseEntity.badRequest().body(response);
         }
-        Equipement updatedEquipment = equipementService.update(equipment);
+        Equipment updatedEquipment = equipementService.update(equipment);
 
         if (updatedEquipment == null) {
             response.put("status", "Error");
