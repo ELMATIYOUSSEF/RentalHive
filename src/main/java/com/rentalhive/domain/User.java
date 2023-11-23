@@ -1,5 +1,7 @@
 package com.rentalhive.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.rentalhive.domain.enums.Role;
 import lombok.*;
 
@@ -9,12 +11,14 @@ import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @Builder
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +26,7 @@ public class User {
     @NotBlank
     private String name ;
     @Email
+    @Column(unique=true)
     private String email ;
     @NotBlank
     private String password ;

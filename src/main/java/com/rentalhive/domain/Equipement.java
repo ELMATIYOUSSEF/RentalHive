@@ -1,8 +1,6 @@
 package com.rentalhive.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.NotNull;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,12 +8,14 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @Builder
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Equipement {
 
     @Id
@@ -23,12 +23,14 @@ public class Equipement {
     private Long id;
 
     @NotBlank
+    @Column(unique=true)
     private String name;
     @NotBlank
     private Integer quantite ;
     @NotBlank
     private Double cout_Location;
     @OneToMany(mappedBy = "equipement",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<EquipementType> equipementTypes;
+    @ToString.Exclude
+    private List<EquipmentItem> equipmentItems;
 
 }

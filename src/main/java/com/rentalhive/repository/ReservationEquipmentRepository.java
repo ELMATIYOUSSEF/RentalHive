@@ -1,9 +1,9 @@
 package com.rentalhive.repository;
 
-import com.rentalhive.domain.User;
+import com.rentalhive.domain.EquipmentItemsReservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface ReservationEquipmentRepository extends JpaRepository<EquipmentItemsReservation, Long> {
 }
