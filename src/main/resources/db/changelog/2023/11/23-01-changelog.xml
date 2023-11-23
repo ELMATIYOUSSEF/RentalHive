@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1700728259238-1" author="YouCode (generated)">
+        <createTable tableName="equipment_item">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_equipmentitem"/>
+            </column>
+            <column name="equipement_id" type="BIGINT"/>
+            <column name="matricul" type="VARCHAR(255)"/>
+            <column name="status_equipement_type" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1700728259238-2" author="YouCode (generated)">
+        <addColumn tableName="equipment_items_reservation">
+            <column name="equipment_item_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1700728259238-3" author="YouCode (generated)">
+        <addForeignKeyConstraint baseColumnNames="equipment_item_id" baseTableName="equipment_items_reservation"
+                                 constraintName="FK_EQUIPMENTITEMSRESERVATION_ON_EQUIPMENTITEM"
+                                 referencedColumnNames="id" referencedTableName="equipment_item"/>
+    </changeSet>
+    <changeSet id="1700728259238-4" author="YouCode (generated)">
+        <addForeignKeyConstraint baseColumnNames="equipement_id" baseTableName="equipment_item"
+                                 constraintName="FK_EQUIPMENTITEM_ON_EQUIPEMENT" referencedColumnNames="id"
+                                 referencedTableName="equipement"/>
+    </changeSet>
+    <changeSet id="1700728259238-5" author="YouCode (generated)">
+        <dropForeignKeyConstraint baseTableName="equipment_items_reservation"
+                                  constraintName="FK_EQUIPMENTITEMSRESERVATION_ON_EQUIPMENTITEMS"/>
+    </changeSet>
+    <changeSet id="1700728259238-6" author="YouCode (generated)">
+        <dropForeignKeyConstraint baseTableName="equipment_items" constraintName="FK_EQUIPMENTITEMS_ON_EQUIPEMENT"/>
+    </changeSet>
+    <changeSet id="1700728259238-7" author="YouCode (generated)">
+        <dropTable cascadeConstraints="true" tableName="equipment_items"/>
+    </changeSet>
+    <changeSet id="1700728259238-8" author="YouCode (generated)">
+        <dropColumn columnName="equipment_items_id" tableName="equipment_items_reservation"/>
+    </changeSet>
+
+</databaseChangeLog>
