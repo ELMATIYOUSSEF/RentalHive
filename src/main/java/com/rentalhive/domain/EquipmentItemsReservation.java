@@ -1,5 +1,6 @@
 package com.rentalhive.domain;
 
+import com.rentalhive.DTO.EquipmentItemsReservationDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,5 +26,12 @@ public class EquipmentItemsReservation {
     @NotBlank
     private LocalDateTime dateRetoure;
 
+    public EquipmentItemsReservationDTO MapTOItemsDTO(){
+        return EquipmentItemsReservationDTO.builder()
+                .dateReservation(dateReservation)
+                .dateRetoure(dateRetoure)
+                .equipmentItem(equipmentItem)
+                .build();
+    }
 
 }
