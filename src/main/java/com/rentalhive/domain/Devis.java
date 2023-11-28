@@ -27,7 +27,7 @@ public class Devis {
     public DevisDTO devisToDTO(){
         return DevisDTO.builder()
                 .terms(terms)
-                .equipmentItemsReservations(equipmentItemsReservations)
+                //.equipmentItemsReservations(equipmentItemsReservations)
                 .status(status)
                 .build();
     }
